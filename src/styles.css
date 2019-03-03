@@ -1,0 +1,23 @@
+:root {
+  --mainWhite: #fff;
+  --mainDark: #000;
+  --primapyColor: #007bff;
+  --lightBlue: #87cefa;
+}
+body {
+  background-color: #efefef;
+}
+body {
+  font-family: "Oswald", sans-serif !important;
+  background: var(--mainWhite) !important;
+  color: var(--mainDark) !important;
+}
+.text-title {
+  font-family: "Permanent Marker", coursive;
+  letter-spacing: 0.3 rem;
+  text-transform: uppercase;
+}
+
+.text-primary {
+  color: var(--primapyColor);
+}
