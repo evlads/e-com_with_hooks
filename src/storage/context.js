@@ -5,17 +5,6 @@ export const ProductContext = createContext();
 
 const ProductProvider = (props) => {
   
-  // const [state, setState] = useState({
-  //   products: storeProducts,
-  //   detailProduct: detailProduct,
-  //   cart: [],
-  //   modalOpen: false,
-  //   modalProduct: detailProduct,
-  //   cartSubtotal: 0,
-  //   cartTax: 0,
-  //   cartTotal: 0 
-  // });
-
   const [products, setProducts] = useState(storeProducts);
   const [detailProduct, setDetailProduct] = useState(detailOneProduct);
   const [cart, setCart] = useState([]);
@@ -26,8 +15,9 @@ const ProductProvider = (props) => {
   const [cartTotal, setCartTotal] = useState(0);
 
   useEffect(() => {
-
-  })
+    addTotals();
+    console.log('totals');
+  }, [cart])
 
 
   const getItem = id => {
@@ -50,11 +40,6 @@ const ProductProvider = (props) => {
     product.total = price;
     setProducts(tempProducts);
     setCart([...cart, product])
-
-    // this.setState(() => {
-    //   return { products: tempProducts, cart: [...this.state.cart, product] }
-    // }, () => {this.addTotals()})
-
   }
 
   const openModal = id => {
@@ -75,12 +60,6 @@ const ProductProvider = (props) => {
     product.count = product.count + 1;
     product.total = product.count * product.price;
     setCart([...tempCart]);
-
-    // this.setState(() => {
-    //   return {
-    //     cart: [...tempCart]
-    //   }
-    // }, () => { this.addTotals() })
   }
 
   const decrement = (id) => {
@@ -95,12 +74,6 @@ const ProductProvider = (props) => {
     } else {
       product.total = product.count * product.price;
       setCart([...tempCart])
-
-      // this.setState(() => {
-      //   return {
-      //     cart: [...tempCart]
-      //   }
-      // }, () => { this.addTotals() })
     }
   }
 
@@ -108,20 +81,13 @@ const ProductProvider = (props) => {
     let tempProducts = [...products];
     let tempCart = [...cart];
     tempCart = tempCart.filter(item => item.id !== id );
-    const index = tempProducts.indexOf(this.getItem(id));
+    const index = tempProducts.indexOf(getItem(id));
     let removedProduct = tempProducts[index];
     removedProduct.inCart = false;
     removedProduct.count = 0;
     removedProduct.total = 0;
     setCart([...tempCart]);
     setProducts([...tempProducts]);
-
-    // this.setState(() => {
-    //   return { 
-    //     cart: [...tempCart],
-    //     products: [...tempProducts]
-    //   }
-    // }, () => { this.addTotals() })  
   }
 
   const clearCart = () => {
@@ -138,16 +104,6 @@ const ProductProvider = (props) => {
     setCartSubtotal(0);
     setCartTax(0);
     setCartTotal(0);
-
-    // this.setState(() => {
-    //   return { 
-    //     products: tempProducts,
-    //     cart: [],
-    //     cartSubtotal: 0,
-    //     cartTax: 0,
-    //     cartTotal: 0 
-    //     }
-    // }, () => { this.addTotals()})
   }
 
   const addTotals = () => {

@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 const CartTotals = (props) => {
 
   const { cartSubtotal, cartTax, cartTotal, clearCart } = props.value;
+
+  
   return (
     <div className="container">
       <div className="row">
